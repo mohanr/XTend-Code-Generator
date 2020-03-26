@@ -1,4 +1,4 @@
-package com.test.generator
+package com.definition.builder
 
 class Generator {
 

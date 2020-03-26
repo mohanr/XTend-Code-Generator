@@ -1,4 +1,4 @@
-package com.test.generator
+package com.definition.builder
 
 import com.google.common.collect.AbstractIterator
 import com.google.common.io.LineReader
@@ -8,7 +8,7 @@ import java.util.regex.Pattern
 
 class DefinitionBuilder {
   
-  val filterRootObject = "(.*)\\d{1,2}[a-zA-Z](.*),(.*)"
+  val filterRootObject = "(.*)\\d{1,2}[a-zA-Z](.*) to(.*)\\d{1,2}[a-zA-Z](.*),(?:.*\n){1,9}"
 	
   Pattern pattern = Pattern.compile(filterRootObject);
   
@@ -26,9 +26,10 @@ class DefinitionBuilder {
 			val result = lineReader.readLine 
 			if( result !== null ){
 				val m =pattern.matcher(result)
-				if(m.matches()){
-					return result
-				}	
+				//if(m.matches()){
+				  while(m.find())
+				  	return m.group()
+				//}	
 				
 			}else
 			    self.endOfData 
