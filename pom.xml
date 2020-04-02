@@ -1,143 +1,136 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<groupId>generator</groupId>
-	<artifactId>generator-pipeline</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+    <groupId>generator</groupId>
+    <artifactId>generator-pipeline</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
 
-	<properties>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<xtext-version>2.21.0</xtext-version>
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <xtext-version>2.21.0</xtext-version>
        <junit-platform.version>5.3.1</junit-platform.version>
     </properties>
-	<dependencyManagement>
-	  <dependencies>
-		<dependency>
-		  <groupId>org.junit</groupId>
-		  <artifactId>junit-bom</artifactId>
-		  <version>5.5.2</version>
-		  <type>pom</type>
-		  <scope>import</scope>
-		</dependency>
-	  </dependencies>
-	</dependencyManagement>
-	<dependencies>
-		<!-- https://mvnrepository.com/artifact/org.yaml/snakeyaml -->
-		<dependency>
-		    <groupId>org.yaml</groupId>
-		    <artifactId>snakeyaml</artifactId>
-		    <version>1.26</version>
-		</dependency>
+    <dependencyManagement>
+      <dependencies>
+        <dependency>
+          <groupId>org.junit</groupId>
+          <artifactId>junit-bom</artifactId>
+          <version>5.5.2</version>
+          <type>pom</type>
+          <scope>import</scope>
+        </dependency>
+      </dependencies>
+    </dependencyManagement>
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.yaml/snakeyaml -->
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>1.26</version>
+        </dependency>
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
         </dependency>
 
-	  <dependency>
-		<groupId>org.junit.jupiter</groupId>
-		<artifactId>junit-jupiter</artifactId>
-		<scope>test</scope>
-	  </dependency>
-	  <dependency>
-		<groupId>org.eclipse.xtend</groupId>
-		<artifactId>org.eclipse.xtend.lib</artifactId>
-		<version>${xtext-version}</version>
-	</dependency>
-	</dependencies>
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter</artifactId>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.eclipse.xtend</groupId>
+        <artifactId>org.eclipse.xtend.lib</artifactId>
+        <version>${xtext-version}</version>
+    </dependency>
+    </dependencies>
 
-	<build>
-		<plugins>
+    <build>
+        <plugins>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.0</version>
-            </plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>build-helper-maven-plugin</artifactId>
-				<version>1.8</version>
-				<executions>
+                <executions>
 <!-- 				<execution>
-					<id>add-test-sources</id>
-					<phase>generate-test-sources</phase>
-					<goals>
-						<goal>add-test-source</goal>
-					</goals>
-					<configuration>
-						<sources>
-							<source>src/test/java</source>
-						</sources>
-					</configuration>
-                </execution> -->
-				<execution>
-						<goals>
-							<goal>add-source</goal>
-						</goals>
-						<configuration>
-							<sources>
-								<source>${basedir}/xtend-gen</source>
-							</sources>
+				  <id>default-testCompile</id>
+				  <phase>none</phase>
+				</execution>        
+ -->                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>1.8</version>
+                <executions>
+                <execution>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>${basedir}/xtend-gen</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>2.5</version>
+                <executions>
+                    <execution>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                        <configuration>
+                            <filesets>
+                                <fileset>
+                                    <directory>${basedir}/xtend-gen</directory>
+                                </fileset>
+                            </filesets>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.eclipse.xtend</groupId>
+                <artifactId>xtend-maven-plugin</artifactId>
+                <version>${xtext-version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                            <goal>xtend-install-debug-info</goal>
+                            <goal>testCompile</goal>
+                            <goal>xtend-test-install-debug-info</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/xtend-gen</outputDirectory>
 						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-clean-plugin</artifactId>
-				<version>2.5</version>
-				<executions>
-					<execution>
-						<phase>clean</phase>
-						<goals>
-							<goal>clean</goal>
-						</goals>
-						<configuration>
-							<filesets>
-								<fileset>
-									<directory>${basedir}/xtend-gen</directory>
-								</fileset>
-							</filesets>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.eclipse.xtend</groupId>
-				<artifactId>xtend-maven-plugin</artifactId>
-				<version>${xtext-version}</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>compile</goal>
-							<goal>xtend-install-debug-info</goal>
-							<!-- <goal>testCompile</goal> -->
-							<goal>xtend-test-install-debug-info</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>${project.build.directory}/xtend-gen</outputDirectory>
-							<testOutputDirectory>${project.build.directory}/xtend-gen/test</testOutputDirectory>
-						</configuration>
-					</execution>
-				</executions>
-				        
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.19.1</version>
-				  <dependencies>
-					<dependency>
-					  <groupId>org.junit.platform</groupId>
-					  <artifactId>junit-platform-surefire-provider</artifactId>
-					  <version>1.0.3</version>
-					</dependency>
-				  </dependencies>
-	  </plugin>
-		</plugins>
-	</build>
+                    </execution>
+                </executions>
+
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.19.1</version>
+				<dependencies>
+						<dependency>
+						  <groupId>org.junit.platform</groupId>
+						  <artifactId>junit-platform-surefire-provider</artifactId>
+						  <version>1.0.3</version>
+						</dependency>
+				</dependencies>
+				</plugin>
+        </plugins>
+    </build>
 </project>
