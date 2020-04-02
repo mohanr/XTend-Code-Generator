@@ -1,0 +1,18 @@
+2020-04-02 13:29:09 INFO  SearchPatterns:22 - (.*)\d{1,2}[a-zA-Z](.*)(?:.*
+){1,4}
+2020-04-02 13:29:09 INFO  SearchPatterns:22 - (.*)\d{1,2}[a-zA-Z](.*)(?:.*
+){1,4}
+2020-04-02 13:29:09 INFO  PatternTest:63 - 1A to 4A,Option Strike,,OptionStrike,,,,,,,,,,,1A,The currency in which the option strike is denominated,,,,currency,,,,,(Optional)Mon,,,,2A,The price or level expressed as a percentage of the forward starting spot price.,,,,percentage,,,,,(Optional)Decimal,,,,3A,Price,,,,(Optional)price,,,,,(Optional)Decimal,,,,4A,Spread,,,,spread,,,,,(Optional)Decimal,,,,
+2020-04-02 13:29:09 INFO  SearchPatterns:22 - (.*)\d{1,2}[a-zA-Z](.*)(?:.*
+){1,4}
+2020-04-02 13:29:09 INFO  EnvironmentSettings:22 - {file=Data-Definition.csv}
+2020-04-02 13:29:09 INFO  EnvironmentSettings:22 - {file=Data-Definition.csv}
+2020-04-02 13:37:19 INFO  SearchPatterns:22 - (.*)\d{1,2}[a-zA-Z](.*)(?:.*
+){1,4}
+2020-04-02 13:37:19 INFO  SearchPatterns:22 - (.*)\d{1,2}[a-zA-Z](.*)(?:.*
+){1,4}
+2020-04-02 13:37:19 INFO  PatternTest:63 - 1A to 4A,Option Strike,,OptionStrike,,,,,,,,,,,1A,The currency in which the option strike is denominated,,,,currency,,,,,(Optional)Mon,,,,2A,The price or level expressed as a percentage of the forward starting spot price.,,,,percentage,,,,,(Optional)Decimal,,,,3A,Price,,,,(Optional)price,,,,,(Optional)Decimal,,,,4A,Spread,,,,spread,,,,,(Optional)Decimal,,,,
+2020-04-02 13:37:19 INFO  SearchPatterns:22 - (.*)\d{1,2}[a-zA-Z](.*)(?:.*
+){1,4}
+2020-04-02 13:37:19 INFO  EnvironmentSettings:22 - {file=Data-Definition.csv}
+2020-04-02 13:37:19 INFO  EnvironmentSettings:22 - {file=Data-Definition.csv}

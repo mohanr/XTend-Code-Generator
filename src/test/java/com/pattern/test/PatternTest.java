@@ -1,6 +1,5 @@
 package com.pattern.test;
 
-import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.regex.Matcher;
@@ -48,7 +47,7 @@ class PatternTest {
 	}
 	
 	
-	@Test
+	//@Test
 	void pattern() {
 	    Pattern p = Pattern.compile( "(.*)\\d{1,2}[a-zA-Z](.*)(?:.*){1,4}" );
 	    Matcher m = p.matcher(text);
